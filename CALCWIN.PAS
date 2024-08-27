@@ -1,4 +1,4 @@
-unit calcwin;
+п»їunit calcwin;
 
 interface
 
@@ -71,7 +71,7 @@ begin
   Action := caFree;
 If Not(CalcProject.Saved) Then                                                                    
 
- Case MessageBox(Handle,PChar('Расчет не сохранен ['+Caption+']. Сохранить?'),'Расчет вагоно-часов',MB_YESNOCANCEL or MB_ICONQUESTION) Of
+ Case MessageBox(Handle,PChar('Р Р°СЃС‡РµС‚ РЅРµ СЃРѕС…СЂР°РЅРµРЅ ['+Caption+']. РЎРѕС…СЂР°РЅРёС‚СЊ?'),'Р Р°СЃС‡РµС‚ РІР°РіРѕРЅРѕ-С‡Р°СЃРѕРІ',MB_YESNOCANCEL or MB_ICONQUESTION) Of
    IDYES:begin
            Action := caNone;
            Activate;

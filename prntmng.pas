@@ -1,4 +1,4 @@
-unit prntmng;
+п»їunit prntmng;
 
 interface
 Uses Windows, SysUtils, Classes, Graphics, Dialogs, Forms, Grids, printers, trains;
@@ -17,20 +17,20 @@ type
     FIsLabelPresent: Boolean;
     FPreview: Boolean;
     FCanvas: TCanvas;
-    FWidthPels: Integer; //ширина oбласти рисования
-    FHeightPels: Integer; // высота области рисования
-    FMidLineWidth: Integer; //толщина промежуточных линий
-    FFrmLineWidth: Integer; //толщина обводящих линий
-    FPageWidth_mm: Integer; //реальные размеры листа страницы в мм
+    FWidthPels: Integer; //С€РёСЂРёРЅР° oР±Р»Р°СЃС‚Рё СЂРёСЃРѕРІР°РЅРёСЏ
+    FHeightPels: Integer; // РІС‹СЃРѕС‚Р° РѕР±Р»Р°СЃС‚Рё СЂРёСЃРѕРІР°РЅРёСЏ
+    FMidLineWidth: Integer; //С‚РѕР»С‰РёРЅР° РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹С… Р»РёРЅРёР№
+    FFrmLineWidth: Integer; //С‚РѕР»С‰РёРЅР° РѕР±РІРѕРґСЏС‰РёС… Р»РёРЅРёР№
+    FPageWidth_mm: Integer; //СЂРµР°Р»СЊРЅС‹Рµ СЂР°Р·РјРµСЂС‹ Р»РёСЃС‚Р° СЃС‚СЂР°РЅРёС†С‹ РІ РјРј
     FPageHeight_mm: Integer;
-    FPLogPelsX1: Integer; // разрешение принтера
+    FPLogPelsX1: Integer; // СЂР°Р·СЂРµС€РµРЅРёРµ РїСЂРёРЅС‚РµСЂР°
     FPLogPelsY1: Integer;
-    FSLogPelsX1: Integer; // разрешение монитора
+    FSLogPelsX1: Integer; // СЂР°Р·СЂРµС€РµРЅРёРµ РјРѕРЅРёС‚РѕСЂР°
     FSLogPelsY1: Integer;
-    FLogPelsX1: Integer; // разрешение при построении
+    FLogPelsX1: Integer; // СЂР°Р·СЂРµС€РµРЅРёРµ РїСЂРё РїРѕСЃС‚СЂРѕРµРЅРёРё
     FLogPelsY1: Integer;
-    FLineOffs: Integer; // текущая строка печати
-    FPrinterOffsX: Integer; //смещение до начала области печати
+    FLineOffs: Integer; // С‚РµРєСѓС‰Р°СЏ СЃС‚СЂРѕРєР° РїРµС‡Р°С‚Рё
+    FPrinterOffsX: Integer; //СЃРјРµС‰РµРЅРёРµ РґРѕ РЅР°С‡Р°Р»Р° РѕР±Р»Р°СЃС‚Рё РїРµС‡Р°С‚Рё
     FPrinterOffsY: Integer;
     function cm_to_pixh(cm: Single): Integer;
     function cm_to_pixw(cm: Single): Integer;
@@ -124,7 +124,7 @@ begin
 {$IFOPT O-}
   Dec(CreateCounter);
 {$ENDIF}
-{  For I:=0 To FPrintPageList.Count-1 Do       это просто список указателей, а не объектов
+{  For I:=0 To FPrintPageList.Count-1 Do       СЌС‚Рѕ РїСЂРѕСЃС‚Рѕ СЃРїРёСЃРѕРє СѓРєР°Р·Р°С‚РµР»РµР№, Р° РЅРµ РѕР±СЉРµРєС‚РѕРІ
     TPrintPage(FPrintPageList.Items[I]).Free;}
   inherited;
 end;
@@ -189,7 +189,7 @@ begin
             B.Free;
           end;
         END;
-      except//мало ли что...
+      except//РјР°Р»Рѕ Р»Рё С‡С‚Рѕ...
       end;
 
     If ShowCredits Then
@@ -202,12 +202,12 @@ begin
       bkColor:=Font.Color;
       Font.Color:=clGray;
 
-      S:='Петербургский Государственный Университет';
+      S:='РџРµС‚РµСЂР±СѓСЂРіСЃРєРёР№ Р“РѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ РЈРЅРёРІРµСЂСЃРёС‚РµС‚';
       LS:=TextWidth(S);
       HS:=TextHeight(S);
       TextOut(cm_to_pixw(2+0.5), cm_to_pixh(FBY), S);
 
-      S:='Путей Сообщений';
+      S:='РџСѓС‚РµР№ РЎРѕРѕР±С‰РµРЅРёР№';
 
       TextOut(cm_to_pixw(2+0.5)+LS div 2-TextWidth(S)div 2, cm_to_pixh(FBY)+HS, S);
 
@@ -236,7 +236,7 @@ begin
             B.Free;
           end;
         END;
-      except//мало ли что...
+      except//РјР°Р»Рѕ Р»Рё С‡С‚Рѕ...
       end;
     end;
     Font.Size:=8;
@@ -258,7 +258,7 @@ begin
       MoveTo(cm_to_pixw(2+I), cm_to_pixh(FBY));
       LineTo(cm_to_pixw(2+I), cm_to_pixh(FBY+10));
     End;
- { DONE 2 -oRayev Pavel -cCommon :  Функция рисования штриховых линий}
+ { DONE 2 -oRayev Pavel -cCommon :  Р¤СѓРЅРєС†РёСЏ СЂРёСЃРѕРІР°РЅРёСЏ С€С‚СЂРёС…РѕРІС‹С… Р»РёРЅРёР№}
    {If FPreview Then
      begin
        Pen.Style:=psDot;
@@ -705,7 +705,7 @@ begin
     Font.Name:='Times New Roman';
     Font.Size:=14;
     Font.Style:= [fsBold];
-    S:='РАСЧЕТ ВАГОНО-ЧАСОВ НА СТАНЦИИ';
+    S:='Р РђРЎР§Р•Рў Р’РђР“РћРќРћ-Р§РђРЎРћР’ РќРђ РЎРўРђРќР¦РР';
     LS:=TextWidth(S);
     HS:=TextHeight(S);
     TextOut(cm_to_pixw(13)-LS div 2, cm_to_pixh(FBY-2.5)-HS, S);
@@ -742,13 +742,13 @@ begin
           B.Free;
         end;
       END;
-    except//мало ли что...
+    except//РјР°Р»Рѕ Р»Рё С‡С‚Рѕ...
     end;
 
     Font.Name:='Times New Roman';
     Font.Size:=10;
     Font.Style:= [];
-    S:='Вагоно-часов на станции:  '; //+IntToStr(FCalcProject.GetVanHours)
+    S:='Р’Р°РіРѕРЅРѕ-С‡Р°СЃРѕРІ РЅР° СЃС‚Р°РЅС†РёРё:  '; //+IntToStr(FCalcProject.GetVanHours)
     LS:=TextWidth(S);
     HS:=TextHeight(S);
     TextOut(cm_to_pixw(3), cm_to_pixh(FBY+12.5), S);
@@ -761,7 +761,7 @@ begin
 
     Font.Name:='Times New Roman';
     Font.Style:= [];
-    S:='Средний простой одного вагона на станции, ч:  '; //+IntToStr(FCalcProject.GetVanHours)
+    S:='РЎСЂРµРґРЅРёР№ РїСЂРѕСЃС‚РѕР№ РѕРґРЅРѕРіРѕ РІР°РіРѕРЅР° РЅР° СЃС‚Р°РЅС†РёРё, С‡:  '; //+IntToStr(FCalcProject.GetVanHours)
     LS:=TextWidth(S);
     HS:=TextHeight(S);
     TextOut(cm_to_pixw(3), cm_to_pixh(FBY+12.5)+HS1, S);
@@ -782,7 +782,7 @@ begin
     begin
       Font.Name:='Arial';
       Font.Style:= [];
-      S:='РАСЧЕТ ДЛЯ КВДИ! ';
+      S:='Р РђРЎР§Р•Рў Р”Р›РЇ РљР’Р”Р! ';
       LS:=TextWidth(S);
       HS:=TextHeight(S);
       TextOut(cm_to_pixw(3), HS+HS1, S);

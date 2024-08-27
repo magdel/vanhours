@@ -1,4 +1,4 @@
-unit main;
+п»їunit main;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   System.ImageList, System.Actions;
 
 Const
-     mnSaveAsk = 'Сохранить последние изменения?';
+     mnSaveAsk = 'РЎРѕС…СЂР°РЅРёС‚СЊ РїРѕСЃР»РµРґРЅРёРµ РёР·РјРµРЅРµРЅРёСЏ?';
 
 type
   TMainForm = class(TForm)
@@ -169,7 +169,7 @@ Var AT:TArriveTrain;Tm:TDateTime;
 begin
   AddTForm.TrainType:=ttArrive;
   AddTForm.ExcludeTrain:=nil;
-  AddTForm.Caption:='Добавить поезд прибытия...';
+  AddTForm.Caption:='Р”РѕР±Р°РІРёС‚СЊ РїРѕРµР·Рґ РїСЂРёР±С‹С‚РёСЏ...';
   If AddTForm.ShowModal<>mrOk Then Exit;
   Tm:=EncodeTime(AddTForm.HourSE.Value,AddTForm.MinuteSE.Value,0,0);
   AT:=TArriveTrain.Create(TCalcForm(ActiveMDIChild).CalcProject,AddTForm.NumberSE.Value,Tm,AddtForm.VanCountSE.Value);
@@ -181,7 +181,7 @@ Var AT:TArriveTrain;CF:TCalcForm;
 begin
   CF:=TCalcForm(ActiveMDIChild);
   AT:=(CF.ATListView.Selected.Data);
-  Case MessageBox(Handle,PChar('Вы действительно хотите удалить поезд №'+AT.sNumber+' ?'),'Расчет вагоно-часов',MB_YESNO or MB_ICONQUESTION) Of
+  Case MessageBox(Handle,PChar('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ РїРѕРµР·Рґ в„–'+AT.sNumber+' ?'),'Р Р°СЃС‡РµС‚ РІР°РіРѕРЅРѕ-С‡Р°СЃРѕРІ',MB_YESNO or MB_ICONQUESTION) Of
     IDYES:CF.CalcProject.RemoveTrain(AT);
     IDNO:Exit;
   End;
@@ -238,7 +238,7 @@ Var AT:TDepartTrain;Tm:TDateTime;
 begin
   AddTForm.TrainType:=ttDepart;
   AddTForm.ExcludeTrain:=nil;
-  AddTForm.Caption:='Добавить поезд отправления...';
+  AddTForm.Caption:='Р”РѕР±Р°РІРёС‚СЊ РїРѕРµР·Рґ РѕС‚РїСЂР°РІР»РµРЅРёСЏ...';
   If AddTForm.ShowModal<>mrOk Then Exit;
   Tm:=EncodeTime(AddTForm.HourSE.Value,AddTForm.MinuteSE.Value,0,0);
   AT:=TDepartTrain.Create(TCalcForm(ActiveMDIChild).CalcProject,AddTForm.NumberSE.Value,Tm,AddtForm.VanCountSE.Value);
@@ -250,7 +250,7 @@ Var DT:TDepartTrain;CF:TCalcForm;
 begin
   CF:=TCalcForm(ActiveMDIChild);
   DT:=(CF.DTListView.Selected.Data);
-  Case MessageBox(Handle,PChar('Вы действительно хотите удалить поезд №'+DT.sNumber+' ?'),'Расчет вагоно-часов',MB_YESNO or MB_ICONQUESTION) Of
+  Case MessageBox(Handle,PChar('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ РїРѕРµР·Рґ в„–'+DT.sNumber+' ?'),'Р Р°СЃС‡РµС‚ РІР°РіРѕРЅРѕ-С‡Р°СЃРѕРІ',MB_YESNO or MB_ICONQUESTION) Of
     IDYES:CF.CalcProject.RemoveTrain(DT);
     IDNO:Exit;
   End;
@@ -274,11 +274,11 @@ Drv:=DefPath;
 SetLength(Drv,1);
 
 SaveDialog1.FileName:=DefPath+'Calcs\results.cvh';
-SaveDialog1.Title:='Сохранить как...';
+SaveDialog1.Title:='РЎРѕС…СЂР°РЅРёС‚СЊ РєР°Рє...';
  If SaveDialog1.Execute Then
    begin
    CF:=TCalcForm(ActiveMDIChild);
-// эдесь мы сохраняем проект под новым именем
+// СЌРґРµСЃСЊ РјС‹ СЃРѕС…СЂР°РЅСЏРµРј РїСЂРѕРµРєС‚ РїРѕРґ РЅРѕРІС‹Рј РёРјРµРЅРµРј
          CF.CalcProject.FileName:=SaveDialog1.FileName;
          CF.CalcProject.FileName:=ChangeFileExt(CF.CalcProject.FileName,'.cvh');
 
@@ -321,7 +321,7 @@ begin
           begin
             CP.FreeWindow;
             CP.Destroy;
-            Case MessageBox(Handle,PChar(E.Message),'Расчет вагоно-часов',MB_OK or MB_ICONERROR) Of
+            Case MessageBox(Handle,PChar(E.Message),'Р Р°СЃС‡РµС‚ РІР°РіРѕРЅРѕ-С‡Р°СЃРѕРІ',MB_OK or MB_ICONERROR) Of
               IDOK:;
             End;    
           raise;
@@ -370,9 +370,9 @@ procedure TMainForm.ACalcExecute(Sender: TObject);
 Var VH:Single;AVP:Single;
 begin
  VH:=TCalcForm(ActiveMDIChild).CalcProject.GetVanHours;
- ShowMessage('Вагоно-часы: '+FormatFloat('0.0',VH));
+ ShowMessage('Р’Р°РіРѕРЅРѕ-С‡Р°СЃС‹: '+FormatFloat('0.0',VH));
  AVP:=VH/TCalcForm(ActiveMDIChild).CalcProject.UsedVanCount;
- ShowMessage('Средний простой вагона: '+FormatFloat('0.00',AVP));
+ ShowMessage('РЎСЂРµРґРЅРёР№ РїСЂРѕСЃС‚РѕР№ РІР°РіРѕРЅР°: '+FormatFloat('0.00',AVP));
 end;
 
 procedure TMainForm.ACommonUpdate(Sender: TObject);
@@ -432,7 +432,7 @@ begin
   AddTForm.ExcludeTrain:=AT;
 
   AddTForm.TrainType:=ttArrive;
-  AddTForm.Caption:='Изменить поезд прибытия...';
+  AddTForm.Caption:='РР·РјРµРЅРёС‚СЊ РїРѕРµР·Рґ РїСЂРёР±С‹С‚РёСЏ...';
 
   If AddTForm.ShowModal<>mrOk Then Exit;
   Tm:=EncodeTime(AddTForm.HourSE.Value,AddTForm.MinuteSE.Value,0,0);
@@ -475,7 +475,7 @@ begin
   AddTForm.ExcludeTrain:=AT;
 
   AddTForm.TrainType:=ttDepart;
-  AddTForm.Caption:='Изменить поезд отправления...';
+  AddTForm.Caption:='РР·РјРµРЅРёС‚СЊ РїРѕРµР·Рґ РѕС‚РїСЂР°РІР»РµРЅРёСЏ...';
 
   If AddTForm.ShowModal<>mrOk Then Exit;
   Tm:=EncodeTime(AddTForm.HourSE.Value,AddTForm.MinuteSE.Value,0,0);
@@ -570,7 +570,7 @@ GetMem(F,300);
         try
         Open(F);
         except
-          //On E:Exception Do E.CreateFmt('Ошибка открытия %1',[F]);
+          //On E:Exception Do E.CreateFmt('РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ %1',[F]);
         end;
       end;
   finally

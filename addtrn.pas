@@ -1,4 +1,4 @@
-unit addtrn;
+п»їunit addtrn;
 
 interface
 
@@ -54,10 +54,10 @@ begin
   ModalResult:=mrOk;
   Exit;
 IsNPresent:
-  MessageBox(Handle,PChar('Повтор номера поезда!'),'Расчет вагоно-часов',MB_OK or MB_ICONASTERISK);
+  MessageBox(Handle,PChar('РџРѕРІС‚РѕСЂ РЅРѕРјРµСЂР° РїРѕРµР·РґР°!'),'Р Р°СЃС‡РµС‚ РІР°РіРѕРЅРѕ-С‡Р°СЃРѕРІ',MB_OK or MB_ICONASTERISK);
   Exit;
 IsTPresent:
-  MessageBox(Handle,PChar('Два поезда на одно время!'),'Расчет вагоно-часов',MB_OK or MB_ICONASTERISK);
+  MessageBox(Handle,PChar('Р”РІР° РїРѕРµР·РґР° РЅР° РѕРґРЅРѕ РІСЂРµРјСЏ!'),'Р Р°СЃС‡РµС‚ РІР°РіРѕРЅРѕ-С‡Р°СЃРѕРІ',MB_OK or MB_ICONASTERISK);
   Exit;
 end;
 

@@ -1,4 +1,4 @@
-unit trains;
+п»їunit trains;
 
 interface
 
@@ -77,7 +77,7 @@ type
     FFileName: String;
     FSaved: Boolean;
     FLoading: Boolean; //is in loading data state
-    FCalcKVDI: Boolean; //расчет для КВДИ (с 8:00 до 12:00)
+    FCalcKVDI: Boolean; //СЂР°СЃС‡РµС‚ РґР»СЏ РљР’Р”Р (СЃ 8:00 РґРѕ 12:00)
 
     function GetArriveTrains(Index: Integer): TArriveTrain;
     function GetArriveTrainsCount: Integer;
@@ -226,8 +226,8 @@ begin
   Result:=CurrentVanCount-FVanCount;
   If Result<0 Then
   Begin
-      //MessageBox(MainForm.Handle,PChar('Недостаточно вагонов для отправления поезда №'+sNumber+'!'),'Расчет вагоно-часов',MB_OK or MB_ICONERROR);
-    raise ETrainError.Create('Недостаточно вагонов для отправления поезда №'+sNumber+'!'); //Abort;
+      //MessageBox(MainForm.Handle,PChar('РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РІР°РіРѕРЅРѕРІ РґР»СЏ РѕС‚РїСЂР°РІР»РµРЅРёСЏ РїРѕРµР·РґР° в„–'+sNumber+'!'),'Р Р°СЃС‡РµС‚ РІР°РіРѕРЅРѕ-С‡Р°СЃРѕРІ',MB_OK or MB_ICONERROR);
+    raise ETrainError.Create('РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РІР°РіРѕРЅРѕРІ РґР»СЏ РѕС‚РїСЂР°РІР»РµРЅРёСЏ РїРѕРµР·РґР° в„–'+sNumber+'!'); //Abort;
   End;
 end;
 
@@ -587,7 +587,7 @@ Begin
 
     If (N1<>FileSign1)or(N2<>FileSign2)or(N3<>FileSign3)or(N4<>FileSign4) Then
     begin
-      raise ECalcProjectError.CreateFmt('Файл %s не явлется расчетом или поврежден', [FFileName]);
+      raise ECalcProjectError.CreateFmt('Р¤Р°Р№Р» %s РЅРµ СЏРІР»РµС‚СЃСЏ СЂР°СЃС‡РµС‚РѕРј РёР»Рё РїРѕРІСЂРµР¶РґРµРЅ', [FFileName]);
     end;
 
    //Stream.Read(SI,SizeOf(SI));
@@ -602,7 +602,7 @@ Begin
 
     Stream.Read(FConstVanCount, SizeOf(FConstVanCount));
 
-    Stream.Read(N, SizeOf(N)); //читаем кол-во ArriveTrain
+    Stream.Read(N, SizeOf(N)); //С‡РёС‚Р°РµРј РєРѕР»-РІРѕ ArriveTrain
   // P.Max:=N;
     For I:=0 To N-1 Do
     begin
@@ -611,7 +611,7 @@ Begin
       AddTrain(Train);
     end;
 
-    Stream.Read(N, SizeOf(N)); //читаем кол-во DepartTrain
+    Stream.Read(N, SizeOf(N)); //С‡РёС‚Р°РµРј РєРѕР»-РІРѕ DepartTrain
   // P.Max:=N;
     For I:=0 To N-1 Do
     begin
@@ -748,12 +748,12 @@ Begin
 //   P.Min:=0;P.Max:=18;P.Step:=1;
 
  //   P.StepIt;
-    N:=FileSign1; //сохраняем заголовок для идентификации
+    N:=FileSign1; //СЃРѕС…СЂР°РЅСЏРµРј Р·Р°РіРѕР»РѕРІРѕРє РґР»СЏ РёРґРµРЅС‚РёС„РёРєР°С†РёРё
     Stream.Write(N, SizeOf(N));
     N:=FileSign2; Stream.Write(N, SizeOf(N));
     N:=FileSign3; Stream.Write(N, SizeOf(N));
     N:=FileSign4; Stream.Write(N, SizeOf(N));
-                              //сохраняем имя пользователя
+                              //СЃРѕС…СЂР°РЅСЏРµРј РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
 //    P.StepIt;
 //      SI.LastSaveDate:=Now;
@@ -766,7 +766,7 @@ Begin
 //      If FOwnerDataPresent Then SI.SomeReserv[srGruzOwnerDataPresent]:=255;
 
 //      Stream.Write(SI,SizeOf(SI));
-  // сохраняем имя владельца компа
+  // СЃРѕС…СЂР°РЅСЏРµРј РёРјСЏ РІР»Р°РґРµР»СЊС†Р° РєРѕРјРїР°
     R:=TRegistry.Create;
     TRY
       R.RootKey:=HKEY_LOCAL_MACHINE; R.OpenKey('SOFTWARE\Microsoft\Windows\CurrentVersion', False);
@@ -792,11 +792,11 @@ Begin
 
 //    P.StepIt;
 
-    // сохраняем элементы расчета   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // СЃРѕС…СЂР°РЅСЏРµРј СЌР»РµРјРµРЅС‚С‹ СЂР°СЃС‡РµС‚Р°   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     Stream.Write(FConstVanCount, SizeOf(FConstVanCount));
 
-      //кол-во arrivetrain
+      //РєРѕР»-РІРѕ arrivetrain
     Stream.Write(FArriveTrainList.Count, SizeOf(FArriveTrainList.Count));
 
     For I:=0 To FArriveTrainList.Count-1 Do
@@ -805,7 +805,7 @@ Begin
       Train.SaveToStream(Stream);
     end;
 
-      //кол-во departtrain
+      //РєРѕР»-РІРѕ departtrain
     Stream.Write(FDepartTrainList.Count, SizeOf(FDepartTrainList.Count));
 
     For I:=0 To FDepartTrainList.Count-1 Do
@@ -826,7 +826,7 @@ Var
 begin
   Stream.Read(L, SizeOf(L));
 // if there is some large string then abort it!!!
-  If L>10000 Then raise ECalcProjectError.Create('Файл не явлется расчетом или поврежден');
+  If L>10000 Then raise ECalcProjectError.Create('Р¤Р°Р№Р» РЅРµ СЏРІР»РµС‚СЃСЏ СЂР°СЃС‡РµС‚РѕРј РёР»Рё РїРѕРІСЂРµР¶РґРµРЅ');
   SetLength(S, L);
   Stream.Read(Pointer(S)^, L);
 end;
@@ -883,47 +883,47 @@ end;
 procedure TCalcProject.UpdateInfoLabels;
 begin
 //  SortTrainsList;
-  TCalcForm(FForm).Label9.Caption:=' недоступно ';
-  TCalcForm(FForm).Label10.Caption:=' недоступно ';
+  TCalcForm(FForm).Label9.Caption:=' РЅРµРґРѕСЃС‚СѓРїРЅРѕ ';
+  TCalcForm(FForm).Label10.Caption:=' РЅРµРґРѕСЃС‚СѓРїРЅРѕ ';
   TCalcForm(FForm).Label12.Font.Color:=clWindowText;
-  TCalcForm(FForm).Label12.Caption:=' недоступно ';
+  TCalcForm(FForm).Label12.Caption:=' РЅРµРґРѕСЃС‚СѓРїРЅРѕ ';
 
   TCalcForm(FForm).lbKVDI.Caption:='';
   If FLoading Then Exit;
 
   try
 
-    TCalcForm(FForm).Label4.Caption:=IntToStr(FConstVanCount)+' вагонов';
-//  TCalcForm(FForm).Label6.Caption:=IntToStr(UsedVanCount)+' вагонов';
-    TCalcForm(FForm).Label9.Caption:=FormatFloat('0.0', GetVanHours)+' вагоно-часов';
+    TCalcForm(FForm).Label4.Caption:=IntToStr(FConstVanCount)+' РІР°РіРѕРЅРѕРІ';
+//  TCalcForm(FForm).Label6.Caption:=IntToStr(UsedVanCount)+' РІР°РіРѕРЅРѕРІ';
+    TCalcForm(FForm).Label9.Caption:=FormatFloat('0.0', GetVanHours)+' РІР°РіРѕРЅРѕ-С‡Р°СЃРѕРІ';
 
     If FCalcKVDI Then
     begin
       If ArrivedVansCount=0 Then
         TCalcForm(FForm).Label10.Caption:=''
       Else
-        TCalcForm(FForm).Label10.Caption:=FormatFloat('0.00', 2*GetVanHours/(ArrivedVansCount+DepartedVansCount))+' часов';
+        TCalcForm(FForm).Label10.Caption:=FormatFloat('0.00', 2*GetVanHours/(ArrivedVansCount+DepartedVansCount))+' С‡Р°СЃРѕРІ';
     end
     Else
     begin
       If UsedVanCount=0 Then
         TCalcForm(FForm).Label10.Caption:=''
       Else
-        TCalcForm(FForm).Label10.Caption:=FormatFloat('0.00', GetVanHours/UsedVanCount)+' часов';
+        TCalcForm(FForm).Label10.Caption:=FormatFloat('0.00', GetVanHours/UsedVanCount)+' С‡Р°СЃРѕРІ';
 
     end;
     If GetIsVanCountCycled Then
     begin
-      TCalcForm(FForm).Label12.Caption:=' Да ';
+      TCalcForm(FForm).Label12.Caption:=' Р”Р° ';
       TCalcForm(FForm).Label12.Font.Color:=clGreen;
     end
     Else
     begin
-      TCalcForm(FForm).Label12.Caption:=' Нет ';
+      TCalcForm(FForm).Label12.Caption:=' РќРµС‚ ';
       TCalcForm(FForm).Label12.Font.Color:=clRed;
     end;
     If FCalcKVDI Then TCalcForm(FForm).Label12.Font.Color:=clGrayText;
-    If FCalcKVDI Then TCalcForm(FForm).lbKVDI.Caption:='Расчет для КВДИ!';
+    If FCalcKVDI Then TCalcForm(FForm).lbKVDI.Caption:='Р Р°СЃС‡РµС‚ РґР»СЏ РљР’Р”Р!';
 
     TCalcForm(FForm).Label9.Font.Color:=clGreen;
     TCalcForm(FForm).Label10.Font.Color:=clGreen;
