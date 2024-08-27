@@ -145,8 +145,8 @@ begin
   FDrawMetaFile.Free;
 
 {$IFOPT O-}
- MessageBox(0,PChar('!Баланс создания и удаления: '+IntToStr(CreateCounter)),'Расчет',MB_OK or MB_ICONEXCLAMATION);
- MessageBox(0,PChar('!Баланс кальк создания и удаления: '+IntToStr(CreateCalcCounter)),'Расчет',MB_OK or MB_ICONEXCLAMATION);
+// MessageBox(0,PChar('!Баланс создания и удаления: '+IntToStr(CreateCounter)),'Расчет',MB_OK or MB_ICONEXCLAMATION);
+// MessageBox(0,PChar('!Баланс кальк создания и удаления: '+IntToStr(CreateCalcCounter)),'Расчет',MB_OK or MB_ICONEXCLAMATION);
 {$ENDIF}
 end;
 
