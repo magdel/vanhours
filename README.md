@@ -1,5 +1,7 @@
 # vanhours
 Расчет вагоно-часов простоя вагонов на станции
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/magdel/vanhours/blob/main/LICENSE.txt)
+[![Hits-of-Code](https://hitsofcode.com/github/magdel/vanhours?branch=main&label=Hits-of-Code)](https://hitsofcode.com/github/magdel/vanhours/view?branch=main&label=Hits-of-Code)
 
 ## Работа с приложением
 
